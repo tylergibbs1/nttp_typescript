@@ -8,7 +8,7 @@ Ask your database questions in plain English.
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ```bash
-nttp "show me active users from last week"
+nttp query "show me active users from last week"
 ```
 
 ```json
@@ -104,7 +104,7 @@ const products = await db.query("top 10 products by price");
 
 ```typescript
 import Fastify from 'fastify';
-import { nttpPlugin } from 'nttp/fastify';
+import nttpPlugin from '@nttp/fastify';
 
 const app = Fastify();
 
@@ -355,12 +355,23 @@ cache: {
 
 ## CLI
 
+The `nttp` package ships a CLI:
+
 ```bash
-nttp setup      # Interactive config
-nttp dev        # Dev server with hot reload
-nttp start      # Production server
-nttp stats      # Cache statistics
-nttp doctor     # Diagnose issues
+nttp setup                 # Interactive config (--non-interactive for agents/automation)
+nttp init                  # Initialize nttp in the current project
+nttp query "active users"  # Run a query (--format json|table)
+nttp docs [query]          # Show or search the documentation
+```
+
+The API server in this repo has its own CLI, run through npm scripts:
+
+```bash
+npm run setup      # Interactive config
+npm run dev        # Dev server with hot reload
+npm run start      # Production server
+npm run stats      # Cache statistics
+npm run doctor     # Diagnose issues
 ```
 
 ---
@@ -384,18 +395,22 @@ nttp doctor     # Diagnose issues
 |---------|-------------|
 | `nttp` | Core library |
 | `create-nttp` | Project scaffolding |
-| `nttp/fastify` | Fastify plugin |
+| `@nttp/fastify` | Fastify plugin |
 
 ---
 
 ## Development
 
 ```bash
-git clone https://github.com/your-org/nttp
-cd nttp
+git clone https://github.com/tylergibbs1/nttp_typescript
+cd nttp_typescript
 npm install
+npm run build
 npm run dev
+npm test
 ```
+
+More docs: [docs/](docs/README.md) (server and architecture) and [packages/nttp/docs/](packages/nttp/docs/README.md) (library: configuration, caching, API, production, troubleshooting).
 
 ---
 
@@ -410,7 +425,7 @@ npm run dev
 
 ## License
 
-MIT
+[MIT](LICENSE)
 
 ---
 
